@@ -1,0 +1,140 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-nav {
+    background-color: #0074d9; /* Цвет фона */
+    padding: 10px 0; /* Внутренний отступ сверху и снизу */
+}
+
+    .navbar-nav ul {
+        list-style: none; /* Убираем стандартные маркеры списка */
+        display: flex; /* Горизонтальное расположение элементов */
+        justify-content: center; /* Центрируем элементы горизонтально */
+        align-items: center; /* Выравниваем элементы по вертикали по центру */
+    }
+
+    .navbar-nav li {
+        margin: 0 20px; /* Горизонтальный отступ между пунктами меню */
+    }
+
+    .navbar-nav a {
+        color: #fff; /* Цвет текста */
+        text-decoration: none; /* Убираем подчеркивание */
+        font-size: 18px; /* Размер шрифта */
+    }
+
+        /* Стили при наведении курсора на ссылки */
+        .navbar-nav a:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+
+    /* Стили для активной ссылки (если нужно выделить текущую страницу) */
+    .navbar-nav .active {
+        font-weight: bold; /* Жирный шрифт для активной ссылки */
+        color: #ff5722; /* Цвет активной ссылки */
+    }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20px;
+}
+
+.header {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+}
+
+.invoiceNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .invoiceNumber label {
+        min-width: 160px;
+        font-weight: bold;
+    }
+
+    .invoiceNumber input {
+        width: 60%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.column {
+    flex: 1;
+    padding: 10px;
+}
+
+    .column:not(:last-child) {
+        border-right: 1px solid black;
+    }
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .row label {
+        min-width: 150px;
+        font-weight: bold;
+    }
+
+    .row input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.add-button {
+    background-color: #0074d9;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.data-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+    .data-grid th,
+    .data-grid td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .data-grid th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+    }
