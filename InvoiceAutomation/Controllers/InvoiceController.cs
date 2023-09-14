@@ -2,8 +2,6 @@
 using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
-using System.Collections.ObjectModel;
 
 namespace InvoiceAutomation.Controllers
 {
@@ -31,7 +29,7 @@ namespace InvoiceAutomation.Controllers
         {
             var result = await _dbSet.FindAsync(new object[] { id });
 
-            return View("GetByIdAsync",result);
+            return View("GetByIdAsync", result);
         }
 
         [HttpGet]
@@ -47,7 +45,7 @@ namespace InvoiceAutomation.Controllers
         {
             var model = await _dbSet.FindAsync(new object[] { id });
 
-            return View("UpdateAsync",model);
+            return View("UpdateAsync", model);
         }
 
         public async Task<IActionResult> DeleteByIdAsync(int id)
@@ -84,7 +82,7 @@ namespace InvoiceAutomation.Controllers
                 {
                     await _dbSet.AddAsync(invoice);
                 }
-                
+
                 await _db.SaveChangesAsync();
 
                 return Ok();
