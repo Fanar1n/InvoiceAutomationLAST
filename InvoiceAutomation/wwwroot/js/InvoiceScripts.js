@@ -43,7 +43,7 @@ document.getElementById("addProductButton").addEventListener("click", function (
             const newRow = productList.insertRow(productList.rows.length);
 
             const cells = [];
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 9; i++) {
                 cells[i] = newRow.insertCell(i);
             }
 
@@ -56,6 +56,21 @@ document.getElementById("addProductButton").addEventListener("click", function (
             cells[6].textContent = productPrice;
             cells[7].textContent = (parseFloat(productQuantity) * parseFloat(productPrice)).toFixed(2);
 
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Удалить";
+
+            deleteButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                // Удаляем строку из таблицы
+                productList.deleteRow(newRow.rowIndex - 1);
+
+                // Удаляем соответствующий объект из списка invoiceList
+                invoiceList.splice(newRow.rowIndex - 2, 1); // -1, так как индекс строки начинается с 0
+            });
+
+            cells[8].appendChild(deleteButton);
+
             // Î÷èñòêà ïîëåé ââîäà
             document.getElementById("Cost_Code").value = "";
             document.getElementById("Name").value = "";
@@ -65,6 +80,7 @@ document.getElementById("addProductButton").addEventListener("click", function (
             document.getElementById("Price").value = "";
         }
 });
+
 document.getElementById("submitListButton").addEventListener("click", function () {
     // Отправьте список на сервер
     fetch("/Invoice/CreateInvoice", {
