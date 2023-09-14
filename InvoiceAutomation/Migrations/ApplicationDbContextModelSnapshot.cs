@@ -82,12 +82,6 @@ namespace InvoiceAutomation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Serial_Number")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Sum")
-                        .HasColumnType("real");
-
                     b.Property<string>("Unit")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

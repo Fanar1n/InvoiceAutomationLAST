@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceAutomation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230907083126_FirstMigrate")]
-    partial class FirstMigrate
+    [Migration("20230913122358_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,12 +84,6 @@ namespace InvoiceAutomation.Migrations
                     b.Property<string>("Sender_Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Serial_Number")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Sum")
-                        .HasColumnType("real");
 
                     b.Property<string>("Unit")
                         .IsRequired()

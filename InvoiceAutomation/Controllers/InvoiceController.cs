@@ -3,6 +3,7 @@ using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
+using System.Collections.ObjectModel;
 
 namespace InvoiceAutomation.Controllers
 {
@@ -11,6 +12,8 @@ namespace InvoiceAutomation.Controllers
         private readonly ApplicationDbContext _db;
 
         protected readonly DbSet<Invoice> _dbSet;
+
+        public List<Invoice> ListOfProducts = new List<Invoice>();
 
         public InvoiceController(ApplicationDbContext applicationDbContext)
         {
@@ -73,13 +76,23 @@ namespace InvoiceAutomation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Invoice invoice)
+        public async Task<IActionResult> Create( List<Invoice> invoiceList)
         {
-            await _dbSet.AddAsync(invoice);
+            try
+            {
+                foreach (var invoice in invoiceList)
+                {
+                    await _dbSet.AddAsync(invoice);
+                }
+                
+                await _db.SaveChangesAsync();
 
-            await _db.SaveChangesAsync();
-
-            return RedirectToAction("Index");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
