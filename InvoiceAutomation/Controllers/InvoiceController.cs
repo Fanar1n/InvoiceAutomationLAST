@@ -76,7 +76,7 @@ namespace InvoiceAutomation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create( List<Invoice> invoiceList)
+        public async Task<IActionResult> CreateInvoice([FromBody] List<Invoice> invoiceList)
         {
             try
             {
