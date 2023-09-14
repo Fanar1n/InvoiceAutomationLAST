@@ -72,11 +72,13 @@ namespace InvoiceAutomation.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.List = ListOfProducts;
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create( List<Invoice> invoiceList)
+        public async Task<IActionResult> CreateInvoice([FromBody] List<Invoice> invoiceList)
         {
             try
             {
