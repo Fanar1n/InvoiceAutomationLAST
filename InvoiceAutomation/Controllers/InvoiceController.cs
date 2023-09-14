@@ -72,8 +72,6 @@ namespace InvoiceAutomation.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.List = ListOfProducts;
-
             return View();
         }
 
