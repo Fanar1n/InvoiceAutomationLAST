@@ -19,7 +19,7 @@ document.getElementById("addProductButton").addEventListener("click", function (
             Allowed: document.getElementById("Allowed").value,
             Controller: document.getElementById("Controller").value,
             Passed: document.getElementById("Passed").value,
-            Accepted: 20
+            Accepted: document.getElementById("Accepted").value
         };
         invoiceList.push(invoiceData);
 

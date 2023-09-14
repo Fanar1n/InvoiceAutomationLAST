@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceAutomation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230913122358_FirstMigration")]
+    [Migration("20230914113301_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace InvoiceAutomation.Migrations
 
             modelBuilder.Entity("InvoiceAutomation.Models.Invoice", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Accepted")
                         .IsRequired()

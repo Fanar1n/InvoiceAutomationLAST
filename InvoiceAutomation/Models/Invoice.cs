@@ -5,7 +5,7 @@ namespace InvoiceAutomation.Models
     public class Invoice
     {
         [JsonProperty("Id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [JsonProperty("Invoice_Number")]
         public string Invoice_Number { get; set; }
         [JsonProperty("Document_Number")]
