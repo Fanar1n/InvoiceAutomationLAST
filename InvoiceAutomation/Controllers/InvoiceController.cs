@@ -24,48 +24,48 @@ namespace InvoiceAutomation.Controllers
             return View();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(int id)
-        {
-            var result = await _dbSet.FindAsync(new object[] { id });
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetByIdAsync(int id)
+        //{
+        //    var result = await _dbSet.FindAsync(new object[] { id });
 
-            return View("GetByIdAsync", result);
-        }
+        //    return View("GetByIdAsync", result);
+        //}
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
-        {
-            var result = await _dbSet.AsNoTracking().ToListAsync();
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllAsync()
+        //{
+        //    var result = await _dbSet.AsNoTracking().ToListAsync();
 
-            return View(result);
-        }
+        //    return View(result);
+        //}
 
-        [HttpGet]
-        public async Task<IActionResult> UpdateAsync(int id)
-        {
-            var model = await _dbSet.FindAsync(new object[] { id });
+        //[HttpGet]
+        //public async Task<IActionResult> UpdateAsync(int id)
+        //{
+        //    var model = await _dbSet.FindAsync(new object[] { id });
 
-            return View("UpdateAsync", model);
-        }
+        //    return View("UpdateAsync", model);
+        //}
 
-        public async Task<IActionResult> DeleteByIdAsync(int id)
-        {
-            var invoice = await _dbSet.FindAsync(new object[] { id });
+        //public async Task<IActionResult> DeleteByIdAsync(int id)
+        //{
+        //    var invoice = await _dbSet.FindAsync(new object[] { id });
 
-            _dbSet.Remove(invoice);
+        //    _dbSet.Remove(invoice);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateAsync(Invoice invoice)
-        {
-            _dbSet.Update(invoice);
+        //[HttpPut]
+        //public async Task<IActionResult> UpdateAsync(Invoice invoice)
+        //{
+        //    _dbSet.Update(invoice);
 
-            await _db.SaveChangesAsync();
+        //    await _db.SaveChangesAsync();
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpGet]
         public IActionResult Create()
