@@ -30,13 +30,21 @@ document.getElementById("addProductButton").addEventListener("click", function (
 
         // Опционально: обновите список изделий на клиенте
         // ...
-
+    var invoiceNumberField = document.getElementById("Invoice_Number");
+    var documentNumberField = document.getElementById("Document_Number");
+    var dataOfCreationField = document.getElementById("Data_Of_Creation");
+    var senderCodeField = document.getElementById("Sender_Code");
+    var recipientCodeField = document.getElementById("Recipient_Code");
         const productExpenseCode = document.getElementById("Cost_Code").value;
         const productName = document.getElementById("Name").value;
         const productItemNumber = document.getElementById("Item_Number").value;
         const productUnit = document.getElementById("Unit").value;
         const productQuantity = document.getElementById("Quantity").value;
-        const productPrice = document.getElementById("Price").value;
+    const productPrice = document.getElementById("Price").value;
+    var allowedField = document.getElementById("Allowed");
+    var controllerField = document.getElementById("Controller");
+    var passedField = document.getElementById("Passed");
+    var acceptedField = document.getElementById("Accepted");
 
         if (productExpenseCode && productName && productItemNumber && productUnit && productQuantity && productPrice) {
             const productList = document.getElementById("productList").getElementsByTagName("tbody")[0];
@@ -71,6 +79,37 @@ document.getElementById("addProductButton").addEventListener("click", function (
 
             cells[8].appendChild(deleteButton);
 
+            var cell1 = document.getElementById("cell1");
+            var cell2 = document.getElementById("cell2");
+            var cell3 = document.getElementById("cell3");
+            var cell4 = document.getElementById("cell4");
+            var cell5 = document.getElementById("cell5");
+            var cell6 = document.getElementById("cell6");
+            var cell7 = document.getElementById("cell7");
+            var cell8 = document.getElementById("cell8");
+
+            // Заполните ячейки данными
+            cell1.textContent = document.getElementById("Document_Number").value;
+            cell2.textContent = document.getElementById("Data_Of_Creation").value;
+            cell3.textContent = document.getElementById("Sender_Code").value;
+            cell4.textContent = document.getElementById("Recipient_Code").value;
+            cell5.textContent = document.getElementById("Allowed").value;
+            cell6.textContent = document.getElementById("Controller").value;
+            cell7.textContent = document.getElementById("Passed").value;
+            cell8.textContent = document.getElementById("Accepted").value;
+
+
+            invoiceNumberField.readOnly = true;
+            documentNumberField.readOnly = true;
+            documentNumberField.readOnly = true;
+            dataOfCreationField.readOnly = true;
+            senderCodeField.readOnly = true;
+            recipientCodeField.readOnly = true;
+            allowedField.readOnly = true;
+            controllerField.readOnly = true;
+            passedField.readOnly = true;
+            acceptedField.readOnly = true;
+
             // Î÷èñòêà ïîëåé ââîäà
             document.getElementById("Cost_Code").value = "";
             document.getElementById("Name").value = "";
@@ -92,8 +131,12 @@ document.getElementById("submitListButton").addEventListener("click", function (
     })
         .then(response => {
             if (response.ok) {
-                // Успешно добавлено на сервер
-                // Очистите список invoiceList
+
+                downloadButton.style.display = "block";
+                submitListButton.style.display = "none";
+
+                console.error("Всё норм");
+
                 invoiceList = [];
                 document.getElementById("invoiceList").value = JSON.stringify(invoiceList);
             } else {

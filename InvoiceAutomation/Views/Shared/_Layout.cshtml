@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - InvoiceAutomation</title>
     <link rel="stylesheet" href="~/css/InvoiceStyles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/InvoicePrinting.css" asp-append-version="true" />
+
 </head>
 <body>
         <nav class="navbar-nav">
@@ -13,7 +15,7 @@
                             <a class="" asp-area="" asp-controller="Invoice" asp-action="Create">Создание накладной</a>
                         </li>
                         <li>
-                            <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="" asp-area="" asp-controller="Invoice" asp-action="Details">Поиск и Печать</a>
                         </li>
                         <li>
                             <a class="" asp-area="" asp-controller="Invoice" asp-action="Create">Create</a>
@@ -25,6 +27,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>*@
     <script src="~/js/InvoiceScripts.js" asp-append-version="true"></script>
+@*    <script src="~/js/InvoicePrinting.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

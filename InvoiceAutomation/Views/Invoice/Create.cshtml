@@ -101,6 +101,31 @@
             <button class="add-button" id="addProductButton">Добавить изделие</button>
         </div>
 
+
+
+
+        <div class="column">
+            <table class="data-grid">
+                <thead>
+                    <tr>
+                        <th>Номер документа</th>
+                        <th>Дата</th>
+                        <th>Шифр отправителя</th>
+                        <th>Шифр получателя</th>
+                    </tr>
+                    <tr id="firstRow">
+                        <td id="cell1"></td>
+                        <td id="cell2"></td>
+                        <td id="cell3"></td>
+                        <td id="cell4"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ���� ����� ����������� ������ � ������� ������� -->
+                </tbody>
+            </table>
+        </div>
+
     <div class="column">
         <table id="productList" class="data-grid">
             <thead>
@@ -122,8 +147,35 @@
         </table>
         </div>
 
+        <div class="column">
+            <table id="thirdLine" class="data-grid">
+                <thead>
+                    <tr>
+                        <th>Разрешил</th>
+                        <th>Контролёр</th>
+                        <th>Сдал</th>
+                        <th>Принял</th>
+                    </tr>
+                    <tr id="secondRow">
+                        <td id="cell5"></td>
+                        <td id="cell6"></td>
+                        <td id="cell7"></td>
+                        <td id="cell8"></td>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <!-- ���� ����� ����������� ������ � ������� ������� -->
+                </tbody>
+            </table>
+        </div>
+
         <div class="add-button-center">
             <button class="add-button" id="submitListButton" type="button">Отправить на сервер</button>
+        </div>
+
+        <div class="add-button-center">
+            <button class="add-button" id="downloadButton" style="display: none;" type="button">Скачать накладную</button>
         </div>
 
     </form>
