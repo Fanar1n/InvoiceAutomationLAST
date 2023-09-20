@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceAutomation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230914113301_FirstMigration")]
+    [Migration("20230920131805_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -52,11 +52,10 @@ namespace InvoiceAutomation.Migrations
                     b.Property<DateTime>("Data_Of_Creation")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Document_Number")
+                    b.Property<int?>("Document_Number")
                         .HasColumnType("int");
 
                     b.Property<string>("Invoice_Number")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Item_Number")
@@ -71,7 +70,7 @@ namespace InvoiceAutomation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
+                    b.Property<float?>("Price")
                         .HasColumnType("real");
 
                     b.Property<int>("Quantity")
@@ -92,6 +91,27 @@ namespace InvoiceAutomation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Invoice");
+                });
+
+            modelBuilder.Entity("InvoiceAutomation.Models.User", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

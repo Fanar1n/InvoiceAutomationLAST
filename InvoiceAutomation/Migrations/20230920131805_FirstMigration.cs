@@ -17,8 +17,8 @@ namespace InvoiceAutomation.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Invoice_Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Document_Number = table.Column<int>(type: "int", nullable: false),
+                    Invoice_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Document_Number = table.Column<int>(type: "int", nullable: true),
                     Data_Of_Creation = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Sender_Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Recipient_Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -27,7 +27,7 @@ namespace InvoiceAutomation.Migrations
                     Item_Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: true),
                     Allowed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Controller = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Passed = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -37,6 +37,20 @@ namespace InvoiceAutomation.Migrations
                 {
                     table.PrimaryKey("PK_Invoice", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -44,6 +58,9 @@ namespace InvoiceAutomation.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Invoice");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

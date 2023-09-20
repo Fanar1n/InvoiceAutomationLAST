@@ -49,11 +49,10 @@ namespace InvoiceAutomation.Migrations
                     b.Property<DateTime>("Data_Of_Creation")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Document_Number")
+                    b.Property<int?>("Document_Number")
                         .HasColumnType("int");
 
                     b.Property<string>("Invoice_Number")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Item_Number")
@@ -68,7 +67,7 @@ namespace InvoiceAutomation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
+                    b.Property<float?>("Price")
                         .HasColumnType("real");
 
                     b.Property<int>("Quantity")
