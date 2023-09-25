@@ -145,13 +145,13 @@ namespace InvoiceAutomation.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetAllAsync()
-        //{
-        //    var result = await _dbSet.AsNoTracking().ToListAsync();
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var result = await _dbSet.AsNoTracking().ToListAsync();
 
-        //    return View(result);
-        //}
+            return View(result);
+        }
 
         //[HttpGet]
         //public async Task<IActionResult> UpdateAsync(int id)

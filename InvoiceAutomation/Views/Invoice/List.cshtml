@@ -1,0 +1,161 @@
+﻿@model IEnumerable<InvoiceAutomation.Models.Invoice>
+
+@{
+    ViewData["Title"] = "GetAllAsync";
+}
+
+<form asp-action="List">
+    <style>
+        h1 {
+            color: #333; /* Цвет заголовка */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: hidden; /* Скрываем горизонтальную прокрутку и обрезаем содержимое */
+        }
+
+        table, th, td {
+            border: 1px solid #ddd; /* Границы таблицы */
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2; /* Цвет фона заголовков */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Цвет фона четных строк */
+        }
+
+        tr:hover {
+            background-color: #ddd; /* Цвет фона строки при наведении курсора */
+        }
+
+        a {
+            text-decoration: none; /* Убираем подчеркивание для ссылок */
+            color: #007bff; /* Цвет ссылок */
+        }
+
+            a:hover {
+                text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+            }
+
+    </style>
+
+ <h1>GetAllAsync</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Document_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Of_Creation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sender_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipient_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Allowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accepted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Of_Creation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allowed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Passed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accepted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</form>

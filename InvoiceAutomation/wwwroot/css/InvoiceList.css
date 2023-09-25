@@ -1,0 +1,43 @@
+﻿<style >
+h1 {
+    color: #333; /* Цвет заголовка */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: hidden; /* Скрываем горизонтальную прокрутку и обрезаем содержимое */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Границы таблицы */
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2; /* Цвет фона заголовков */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Цвет фона четных строк */
+}
+
+tr:hover {
+    background-color: #ddd; /* Цвет фона строки при наведении курсора */
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание для ссылок */
+    color: #007bff; /* Цвет ссылок */
+}
+
+    a:hover {
+        text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+    }
+
+</style >
