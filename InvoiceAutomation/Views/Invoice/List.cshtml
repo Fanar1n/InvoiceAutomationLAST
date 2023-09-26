@@ -4,52 +4,99 @@
     ViewData["Title"] = "GetAllAsync";
 }
 
+<style>
+    /* Устанавливаем стили для всей страницы */
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего текста */
+        margin: 0; /* Убираем отступы на странице */
+        padding: 0; /* Убираем внутренние отступы на странице */
+        background-color: #f4f4f4; /* Цвет фона страницы */
+    }
+
+    /* Устанавливаем стили для заголовка h1 */
+    h1 {
+        color: #333; /* Цвет заголовка */
+        text-align: center; /* Выравниваем заголовок по центру */
+        padding: 20px 0; /* Добавляем отступы сверху и снизу для заголовка */
+    }
+
+    /* Устанавливаем стили для таблицы */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        table-layout: fixed; /* Фиксируем ширину столбцов */
+    }
+
+    /* Устанавливаем стили для заголовков таблицы (th) */
+    th {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+    }
+
+    /* Устанавливаем стили для ячеек таблицы (td) */
+    td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в ячейках */
+        overflow: hidden; /* Скрываем содержимое, которое не помещается */
+        text-overflow: ellipsis; /* Добавляем многоточие для обрезанного текста */
+    }
+
+    /* Устанавливаем стили для строк таблицы (tr) */
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет фона четных строк */
+    }
+
+    /* Устанавливаем стили для строк таблицы при наведении курсора */
+    tr:hover {
+        background-color: #ddd; /* Цвет фона строки при наведении курсора */
+    }
+
+    /* Устанавливаем стили для ссылок в ячейках таблицы */
+    a {
+        text-decoration: none; /* Убираем подчеркивание для ссылок */
+        color: #007bff; /* Цвет ссылок */
+    }
+
+        /* Устанавливаем стили для ссылок в ячейках таблицы при наведении курсора */
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+        }
+
+    .invoiceNumber {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .invoiceNumber label {
+            min-width: 160px;
+            font-weight: bold;
+        }
+
+        .invoiceNumber input {
+            width: 60%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+</style>
+
 <form asp-action="List">
-    <style>
-        h1 {
-            color: #333; /* Цвет заголовка */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            overflow-x: hidden; /* Скрываем горизонтальную прокрутку и обрезаем содержимое */
-        }
-
-        table, th, td {
-            border: 1px solid #ddd; /* Границы таблицы */
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2; /* Цвет фона заголовков */
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2; /* Цвет фона четных строк */
-        }
-
-        tr:hover {
-            background-color: #ddd; /* Цвет фона строки при наведении курсора */
-        }
-
-        a {
-            text-decoration: none; /* Убираем подчеркивание для ссылок */
-            color: #007bff; /* Цвет ссылок */
-        }
-
-            a:hover {
-                text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
-            }
-
-    </style>
 
  <h1>GetAllAsync</h1>
+
+    <div class="invoiceNumber">
+        <label for="docNumber">Номер документа:</label>
+        <input class="form-control" id="invoiceNumber" />
+    </div>
+
 <table class="table">
     <thead>
         <tr>

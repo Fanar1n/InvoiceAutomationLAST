@@ -153,6 +153,14 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ShowList(string invoiceNumber)
+        {
+            var result = _db.Invoice.FirstOrDefault(e => e.Invoice_Number == invoiceNumber);
+
+            return View(result);
+        }
+
         //[HttpGet]
         //public async Task<IActionResult> UpdateAsync(int id)
         //{
