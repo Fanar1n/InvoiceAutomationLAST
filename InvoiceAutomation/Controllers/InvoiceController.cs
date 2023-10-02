@@ -148,15 +148,15 @@ namespace InvoiceAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var result = await _dbSet.AsNoTracking().ToListAsync();
+            var result = await _dbSet.AsNoTracking().GroupBy(x => x.Invoice_Number).Select(group => group.First()).ToListAsync();
 
             return View(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ShowList(string invoiceNumber)
+        [HttpGet]
+        public async Task<IActionResult> ShowList([FromBody] string invoiceNumber)
         {
-            var result = _db.Invoice.FirstOrDefault(e => e.Invoice_Number == invoiceNumber);
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number.Contains(invoiceNumber)).ToListAsync();
 
             return View(result);
         }

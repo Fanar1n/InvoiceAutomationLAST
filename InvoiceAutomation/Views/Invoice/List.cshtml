@@ -86,6 +86,18 @@
             border-radius: 5px;
         }
 
+    .add-button {
+        background-color: #0074d9;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
 </style>
 
 <form asp-action="List">
@@ -95,6 +107,7 @@
     <div class="invoiceNumber">
         <label for="docNumber">Номер документа:</label>
         <input class="form-control" id="invoiceNumber" />
+        <button class="add-button" id="searchButton">Добавить изделие</button>
     </div>
 
 <table class="table">
