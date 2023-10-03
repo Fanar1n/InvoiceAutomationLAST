@@ -153,7 +153,7 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ShowList([FromBody] string invoiceNumber)
         {
             var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number.Contains(invoiceNumber)).ToListAsync();

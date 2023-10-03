@@ -1,10 +1,10 @@
 ﻿document.getElementById("searchButton").addEventListener("click", function () {
     // Отправьте список на сервер
 
-    var invoiceNumber = document.getElementById("invoiceNumber");
+    var invoiceNumber = document.getElementById("invoiceNumber1").value;
 
     fetch("/Invoice/ShowList", {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
