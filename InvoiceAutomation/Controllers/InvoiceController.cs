@@ -153,32 +153,35 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ShowList([FromBody] string invoiceNumber)
+        [HttpGet]
+        public async Task<IActionResult> Details(string Invoice_Number)
         {
-            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number.Contains(invoiceNumber)).ToListAsync();
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number == Invoice_Number).ToListAsync();
 
             return View(result);
         }
 
         //[HttpGet]
-        //public async Task<IActionResult> UpdateAsync(int id)
+        //public async Task<IActionResult> Edit(int id)
         //{
         //    var model = await _dbSet.FindAsync(new object[] { id });
 
-        //    return View("UpdateAsync", model);
+        //    return View(model);
         //}
 
-        //public async Task<IActionResult> DeleteByIdAsync(int id)
-        //{
-        //    var invoice = await _dbSet.FindAsync(new object[] { id });
+        public async Task<IActionResult> Delete(string invoice_Number)
+        {
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number.Contains(invoice_Number)).ToListAsync();
 
-        //    _dbSet.Remove(invoice);
+            _dbSet.RemoveRange(result);
 
-        //    return RedirectToAction("Index");
-        //}
+            await _db.SaveChangesAsync();
 
-        //[HttpPut]
+            return RedirectToAction("List");
+        }
+
+
+        [HttpPut]
         //public async Task<IActionResult> UpdateAsync(Invoice invoice)
         //{
         //    _dbSet.Update(invoice);

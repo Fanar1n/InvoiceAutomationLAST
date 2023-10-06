@@ -100,86 +100,76 @@
 
 </style>
 
-<form asp-action="ShowList">
+<form asp-action="Details">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label>Номер документа</label>
+                </th>
+                <th>
+                    <label>Дата</label>
+                </th>
+                <th>
+                    <label>Шифр отправителя</label>
+                </th>
+                <th>
+                    <label>Шифр получателя</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var firstItem = Model.FirstOrDefault();
+                if (firstItem != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Document_Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Data_Of_Creation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Sender_Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Recipient_Code)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
 
-    <h1>GetAllAsync</h1>
-
-    <div class="invoiceNumber">
-        <label for="docNumber">Номер документа:</label>
-        <input class="form-control" id="invoiceNumber" />
-        <button class="add-button" id="searchButton">Добавить изделие</button>
-    </div>
+    </table>
 
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Invoice_Number)
+                    <label>Шифр затрат</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Document_Number)
+                    <label>Наименование</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Data_Of_Creation)
+                    <label>Номенклатурный номер</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sender_Code)
+                    <label>Ед. изм</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Recipient_Code)
+                    <label>Количество</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cost_Code)
+                    <label>Цена</label>
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Item_Number)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Unit)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Allowed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controller)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Passed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Accepted)
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Invoice_Number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Document_Number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Data_Of_Creation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sender_Code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Recipient_Code)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Cost_Code)
                     </td>
@@ -198,25 +188,50 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Allowed)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Controller)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Passed)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Accepted)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
                 </tr>
             }
         </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label>Разрешил</label>
+                </th>
+                <th>
+                    <label>Контроллёр</label>
+                </th>
+                <th>
+                    <label>Сдал</label>
+                </th>
+                <th>
+                    <label>Принял</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var secondItem = Model.FirstOrDefault();
+                if (secondItem != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Allowed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Controller)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Passed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Accepted)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
     </table>
 </form>
