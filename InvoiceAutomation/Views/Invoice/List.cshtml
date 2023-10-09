@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* Устанавливаем стили для всей страницы */
     body {
         font-family: Arial, sans-serif; /* Шрифт для всего текста */
         margin: 0; /* Убираем отступы на странице */
@@ -14,10 +13,8 @@
     }
 
     /* Устанавливаем стили для заголовка h1 */
-    h1 {
-        color: #333; /* Цвет заголовка */
+    h2{
         text-align: center; /* Выравниваем заголовок по центру */
-        padding: 20px 0; /* Добавляем отступы сверху и снизу для заголовка */
     }
 
     /* Устанавливаем стили для таблицы */
@@ -31,11 +28,11 @@
 
     /* Устанавливаем стили для заголовков таблицы (th) */
     th {
-        background-color: #007bff;
-        color: #fff;
+        background-color: #f0f0f0;
         padding: 10px;
         text-align: left;
         white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
     }
 
     /* Устанавливаем стили для ячеек таблицы (td) */
@@ -98,19 +95,54 @@
         transition: background-color 0.3s;
     }
 
+    #search-form {
+        border-radius: 5px;
+        text-align: center;
+    }
+
+        #search-form label {
+            display: inline-block; /* Добавлено для размещения в одной строке */
+            margin-bottom: 10px;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="text"] {
+            width: 800px; /* Увеличение ширины поля ввода */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="submit"] {
+            background-color: #0074d9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+            #search-form input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
 </style>
 
-<form asp-action="List">
+ <h2>Работа с накладными</h2>
 
- <h1>GetAllAsync</h1>
-
-    <div class="invoiceNumber">
-        <label for="docNumber">Номер документа:</label>
-        <input class="form-control" id="invoiceNumber" placeholder="Введите строку" />
-        <button class="add-button" id="searchButton" type="button">Поиск накладной</button>
+<form id="search-form" asp-controller="Invoice" asp-action="Search" method="get">
+    <div>
+        <label>Номер документа:</label>
+        <input type="text" name="Invoice_Number" placeholder="Введите строку" />
+        <input type="submit" value="Поиск накладной" />
     </div>
+</form>
 
-<table class="table">
+    <form asp-action="List">
+    <table class="data-grid">
     <thead>
         <tr>
             <th>

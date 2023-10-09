@@ -150,7 +150,7 @@ namespace InvoiceAutomation.Controllers
         {
             var result = await _dbSet.AsNoTracking().GroupBy(x => x.Invoice_Number).Select(group => group.First()).ToListAsync();
 
-            return View(result);
+            return View("List", result);
         }
 
         [HttpGet]
@@ -161,17 +161,22 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var model = await _dbSet.FindAsync(new object[] { id });
-
-        //    return View(model);
-        //}
-
-        public async Task<IActionResult> Delete(string invoice_Number)
+        [HttpGet]
+        public async Task<IActionResult> Search(string Invoice_Number)
         {
-            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number.Contains(invoice_Number)).ToListAsync();
+            var result = await _dbSet
+                .AsNoTracking()
+                .Where(i => i.Invoice_Number.Contains(Invoice_Number)) // Фильтрация перед группировкой
+                .GroupBy(x => x.Invoice_Number)
+                .Select(group => group.First())
+                .ToListAsync();
+            return View("List", result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string Invoice_Number)
+        {
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number == Invoice_Number).ToListAsync();
 
             _dbSet.RemoveRange(result);
 

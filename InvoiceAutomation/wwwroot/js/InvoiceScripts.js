@@ -183,3 +183,23 @@ document.getElementById("downloadButton").addEventListener("click", function () 
             console.error("Ошибка при выполнении запроса:", error);
         });
 });
+
+document.getElementById('searchButton').addEventListener('click', function () {
+    var invoiceNumber = document.getElementById('invoiceNumber').value;
+    fetch(`/Invoice/Search?Invoice_Number=${encodeURIComponent(invoiceNumber)}`, {
+        method: "GET"
+    })
+        .then(response => {
+            if (response.ok) {
+                // Вернулся успешный ответ, перенаправьте пользователя на другую страницу
+                window.location.href = '/Invoice/List'; // Здесь укажите URL другой страницы
+            } else {
+                // Обработка ошибки, если это необходимо
+                console.error('Ошибка при выполнении поиска: ' + response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при выполнении поиска: ' + error);
+        });
+});
+

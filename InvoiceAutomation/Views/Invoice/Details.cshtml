@@ -98,9 +98,20 @@
         transition: background-color 0.3s;
     }
 
+    h3 {
+        text-align: center;
+        font-weight: normal;
+    }
+
 </style>
 
 <form asp-action="Details">
+    <h3>Накладная на внутреннее перемещение</h3>
+    @{
+        var invoice_Number = Model.FirstOrDefault();
+        <h3>@Html.DisplayFor(modelItem => invoice_Number.Invoice_Number)</h3>
+    }
+
     <table class="table">
         <thead>
             <tr>
