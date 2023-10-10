@@ -18,7 +18,7 @@ namespace InvoiceAutomation.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Invoice_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Document_Number = table.Column<int>(type: "int", nullable: true),
+                    Document_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Data_Of_Creation = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Sender_Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Recipient_Code = table.Column<string>(type: "nvarchar(max)", nullable: false),

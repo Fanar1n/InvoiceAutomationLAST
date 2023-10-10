@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceAutomation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230920131805_FirstMigration")]
+    [Migration("20231010124640_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -52,8 +52,8 @@ namespace InvoiceAutomation.Migrations
                     b.Property<DateTime>("Data_Of_Creation")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Document_Number")
-                        .HasColumnType("int");
+                    b.Property<string>("Document_Number")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Invoice_Number")
                         .HasColumnType("nvarchar(max)");

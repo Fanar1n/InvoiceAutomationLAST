@@ -9,7 +9,6 @@
         font-family: Arial, sans-serif; /* Шрифт для всего текста */
         margin: 0; /* Убираем отступы на странице */
         padding: 0; /* Убираем внутренние отступы на странице */
-        background-color: #f4f4f4; /* Цвет фона страницы */
     }
 
     /* Устанавливаем стили для заголовка h1 */
@@ -146,31 +145,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Invoice_Number)
+                    <label>Номер докладной</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Document_Number)
+                <label>№ документа</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data_Of_Creation)
+                    <label>Дата</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sender_Code)
+                    <label>Шифр отправителя</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Recipient_Code)
+                    <label>Шифр получателя</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Allowed)
+                    <label>Разрешил</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Controller)
+                    <label>Контролёр</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Passed)
+                    <label>Сдал</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Accepted)
+                    <label>Принял</label>
             </th>
             <th></th>
         </tr>
@@ -207,7 +206,7 @@
             </td>
             <td>
                 <a asp-controller="Invoice" asp-action="Details" asp-route-invoice_Number="@item.Invoice_Number">Детали</a>
-                <a asp-action="Delete" asp-route-id="@item.Invoice_Number">Удалить</a>
+                        <a asp-controller="Invoice" asp-action="Delete" asp-route-invoice_Number="@item.Invoice_Number">Удалить</a>
             </td>
         </tr>
 }

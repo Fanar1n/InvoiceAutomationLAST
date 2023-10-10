@@ -9,7 +9,7 @@ namespace InvoiceAutomation.Models
         [JsonProperty("Invoice_Number")]
         public string? Invoice_Number { get; set; }
         [JsonProperty("Document_Number")]
-        public int? Document_Number { get; set; }
+        public string? Document_Number { get; set; }
         [JsonProperty("Data_Of_Creation")]
         public DateTime Data_Of_Creation { get; set; }
         [JsonProperty("Sender_Code")]

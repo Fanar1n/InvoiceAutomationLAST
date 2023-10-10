@@ -164,6 +164,14 @@ namespace InvoiceAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string Invoice_Number)
         {
+            if(Invoice_Number is null)
+            {
+                var resultNULL = await _dbSet.AsNoTracking().GroupBy(x => x.Invoice_Number).Select(group => group.First()).ToListAsync();
+
+                return View("List", resultNULL);
+            }
+            else
+            { 
             var result = await _dbSet
                 .AsNoTracking()
                 .Where(i => i.Invoice_Number.Contains(Invoice_Number)) // Фильтрация перед группировкой
@@ -171,9 +179,10 @@ namespace InvoiceAutomation.Controllers
                 .Select(group => group.First())
                 .ToListAsync();
             return View("List", result);
+            }
         }
 
-        [HttpDelete]
+        [HttpGet]
         public async Task<IActionResult> Delete(string Invoice_Number)
         {
             var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number == Invoice_Number).ToListAsync();
@@ -205,6 +214,10 @@ namespace InvoiceAutomation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateInvoice([FromBody] List<Invoice> invoiceList)
         {
+            if(invoiceList.Count == 0)
+            {
+                return BadRequest();
+            }
             try
             {
                 foreach (var invoice in invoiceList)

@@ -10,14 +10,11 @@
         font-family: Arial, sans-serif; /* Шрифт для всего текста */
         margin: 0; /* Убираем отступы на странице */
         padding: 0; /* Убираем внутренние отступы на странице */
-        background-color: #f4f4f4; /* Цвет фона страницы */
     }
 
     /* Устанавливаем стили для заголовка h1 */
-    h1 {
-        color: #333; /* Цвет заголовка */
+    h2 {
         text-align: center; /* Выравниваем заголовок по центру */
-        padding: 20px 0; /* Добавляем отступы сверху и снизу для заголовка */
     }
 
     /* Устанавливаем стили для таблицы */
@@ -31,11 +28,11 @@
 
     /* Устанавливаем стили для заголовков таблицы (th) */
     th {
-        background-color: #007bff;
-        color: #fff;
+        background-color: #f0f0f0;
         padding: 10px;
         text-align: left;
         white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
     }
 
     /* Устанавливаем стили для ячеек таблицы (td) */
@@ -68,36 +65,6 @@
             text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
         }
 
-    .invoiceNumber {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-        .invoiceNumber label {
-            min-width: 160px;
-            font-weight: bold;
-        }
-
-        .invoiceNumber input {
-            width: 60%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-    .add-button {
-        background-color: #0074d9;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        text-align: center;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
     h3 {
         text-align: center;
         font-weight: normal;
@@ -112,7 +79,7 @@
         <h3>@Html.DisplayFor(modelItem => invoice_Number.Invoice_Number)</h3>
     }
 
-    <table class="table">
+    <table class="data-grid">
         <thead>
             <tr>
                 <th>
@@ -154,7 +121,7 @@
 
     </table>
 
-    <table class="table">
+    <table class="data-grid">
         <thead>
             <tr>
                 <th>
@@ -204,7 +171,7 @@
         </tbody>
     </table>
 
-    <table class="table">
+    <table class="data-grid">
         <thead>
             <tr>
                 <th>
