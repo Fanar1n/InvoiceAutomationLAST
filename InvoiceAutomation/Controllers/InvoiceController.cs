@@ -2,6 +2,7 @@
 using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -171,14 +172,14 @@ namespace InvoiceAutomation.Controllers
                 return View("List", resultNULL);
             }
             else
-            { 
-            var result = await _dbSet
-                .AsNoTracking()
-                .Where(i => i.Invoice_Number.Contains(Invoice_Number)) // Фильтрация перед группировкой
-                .GroupBy(x => x.Invoice_Number)
-                .Select(group => group.First())
-                .ToListAsync();
-            return View("List", result);
+            {
+                var result = await _dbSet
+        .AsNoTracking()
+        .Where(i => i.Invoice_Number.Contains(Invoice_Number) || i.Name.Contains(Invoice_Number) || i.Item_Number.Contains(Invoice_Number)) // Фильтрация по Invoice_Number и/или Name
+        .GroupBy(x => x.Invoice_Number)
+        .Select(group => group.First())
+        .ToListAsync();
+                return View("List", result);
             }
         }
 

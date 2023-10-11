@@ -138,7 +138,7 @@ document.getElementById("submitListButton").addEventListener("click", function (
                 downloadButton.style.display = "block";
                 submitListButton.style.display = "none";
 
-                //invoiceList = [];
+                invoiceList = [];
                 //document.getElementById("invoiceList").value = JSON.stringify(invoiceList);
             } else {
                 // Ошибка при добавлении на сервер
