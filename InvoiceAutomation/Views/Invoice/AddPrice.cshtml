@@ -1,0 +1,283 @@
+﻿@using Newtonsoft.Json;
+@model IEnumerable<InvoiceAutomation.Models.Invoice>
+
+@{
+    ViewData["Title"] = "GetAllAsync";
+}
+
+<style>
+    /* Устанавливаем стили для всей страницы */
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего текста */
+        margin: 0; /* Убираем отступы на странице */
+        padding: 0; /* Убираем внутренние отступы на странице */
+    }
+
+    /* Устанавливаем стили для заголовка h1 */
+    h2 {
+        text-align: center; /* Выравниваем заголовок по центру */
+    }
+
+    /* Устанавливаем стили для таблицы */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        table-layout: fixed; /* Фиксируем ширину столбцов */
+    }
+
+    /* Устанавливаем стили для заголовков таблицы (th) */
+    th {
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
+    }
+
+    /* Устанавливаем стили для ячеек таблицы (td) */
+    td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в ячейках */
+        overflow: hidden; /* Скрываем содержимое, которое не помещается */
+        text-overflow: ellipsis; /* Добавляем многоточие для обрезанного текста */
+    }
+
+    /* Устанавливаем стили для строк таблицы (tr) */
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет фона четных строк */
+    }
+
+    /* Устанавливаем стили для строк таблицы при наведении курсора */
+    tr:hover {
+        background-color: #ddd; /* Цвет фона строки при наведении курсора */
+    }
+
+    /* Устанавливаем стили для ссылок в ячейках таблицы */
+    a {
+        text-decoration: none; /* Убираем подчеркивание для ссылок */
+        color: #007bff; /* Цвет ссылок */
+    }
+
+        /* Устанавливаем стили для ссылок в ячейках таблицы при наведении курсора */
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+        }
+
+    h3 {
+        text-align: center;
+        font-weight: normal;
+    }
+
+</style>
+
+<form asp-action="Details">
+    <h3>Накладная на внутреннее перемещение</h3>
+    @{
+        var invoice_Number = Model.FirstOrDefault();
+        <h3>@Html.DisplayFor(modelItem => invoice_Number.Invoice_Number)</h3>
+    }
+
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>
+                    <label>Номер документа</label>
+                </th>
+                <th>
+                    <label>Дата</label>
+                </th>
+                <th>
+                    <label>Шифр отправителя</label>
+                </th>
+                <th>
+                    <label>Шифр получателя</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var firstItem = Model.FirstOrDefault();
+                if (firstItem != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Document_Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Data_Of_Creation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Sender_Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => firstItem.Recipient_Code)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>
+                    <label>Шифр затрат</label>
+                </th>
+                <th>
+                    <label>Наименование</label>
+                </th>
+                <th>
+                    <label>Номенклатурный номер</label>
+                </th>
+                <th>
+                    <label>Ед. изм</label>
+                </th>
+                <th>
+                    <label>Количество</label>
+                </th>
+                <th>
+                    <label>Цена</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>
+                    <label>Разрешил</label>
+                </th>
+                <th>
+                    <label>Контроллёр</label>
+                </th>
+                <th>
+                    <label>Сдал</label>
+                </th>
+                <th>
+                    <label>Принял</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var secondItem = Model.FirstOrDefault();
+                if (secondItem != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Allowed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Controller)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Passed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => secondItem.Accepted)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+<div class="add-button-center">
+    <button class="add-button" id="SaveButtonAddPrice" style="background: #C1172C" type="button">Сохранить накладную</button>
+</div>
+
+<script>
+
+    document.getElementById("SaveButtonAddPrice").addEventListener("click", function () {
+
+        var invoiceListAddPrice = @Html.Raw(JsonConvert.SerializeObject(Model));
+        // Отправьте список на сервер
+        fetch("/Invoice/CreateInvoice", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(invoiceListAddPrice)
+        })
+            .then(response => {
+                if (response.ok) {
+
+                    invoiceListAddPrice = [];
+                    //document.getElementById("invoiceList").value = JSON.stringify(invoiceList);
+                } else {
+                    // Ошибка при добавлении на сервер
+                    console.error("Ошибка при отправке списка на сервер.");
+                }
+            })
+            .catch(error => {
+                console.error("Ошибка при выполнении запроса:", error);
+            });
+    });
+
+    document.getElementById("downloadButtonDetails").addEventListener("click", function () {
+        // Отправьте список на сервер
+        fetch("/Invoice/DownloadInvoice", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(invoiceListDetails)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob(); // Получаем содержимое файла в виде Blob
+                } else {
+                    // Ошибка при добавлении на сервер
+                    console.error("Ошибка при отправке списка на сервер.");
+                    throw new Error("Ошибка при отправке запроса на сервер.");
+                }
+            })
+            .then(blob => {
+                // Создаем временную ссылку для скачивания файла
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.style.display = "none";
+                a.href = url;
+                a.download = "example.docx"; // Устанавливаем имя файла
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error("Ошибка при выполнении запроса:", error);
+            });
+    });
+</script>
+
+

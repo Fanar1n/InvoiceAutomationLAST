@@ -111,6 +111,18 @@ namespace InvoiceAutomation.Controllers
 
                 if (userFromDB != null)
                 {
+                    if(userFromDB.Role == "Администратор")
+                    {
+                        return RedirectToAction("Create", "Invoice");
+                    }
+                    if (userFromDB.Role == "СМЦ" || userFromDB.Role == "ПДО")
+                    {
+                        return RedirectToAction("Create", "Invoice");
+                    }
+                    if (userFromDB.Role == "Плановый")
+                    {
+                        return RedirectToAction("AddPrice", "Invoice");
+                    }
                     return RedirectToAction("Create", "Invoice");
                 }
                 else

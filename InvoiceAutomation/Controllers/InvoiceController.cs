@@ -162,6 +162,14 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> AddPrice()
+        {
+            var result = await _dbSet.AsNoTracking().Where(i => i.Price == null).ToListAsync();
+
+            return View(result);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Search(string Invoice_Number)
         {
@@ -183,6 +191,8 @@ namespace InvoiceAutomation.Controllers
             }
         }
 
+
+
         [HttpGet]
         public async Task<IActionResult> Delete(string Invoice_Number)
         {
@@ -194,17 +204,6 @@ namespace InvoiceAutomation.Controllers
 
             return RedirectToAction("List");
         }
-
-
-        [HttpPut]
-        //public async Task<IActionResult> UpdateAsync(Invoice invoice)
-        //{
-        //    _dbSet.Update(invoice);
-
-        //    await _db.SaveChangesAsync();
-
-        //    return RedirectToAction("Index");
-        //}
 
         [HttpGet]
         public IActionResult Create()
