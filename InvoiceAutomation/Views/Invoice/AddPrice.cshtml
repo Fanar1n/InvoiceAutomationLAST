@@ -165,7 +165,7 @@
                         @Html.DisplayFor(modelItem => item.Quantity)
                     </td>
                     <td>
-                        <input type="text" name="Invoice_Number" placeholder="Введите цену" />
+                        <input type="text" name="Price[@Model.ToList().IndexOf(item)]" placeholder="Введите цену" />
                     </td>
                 </tr>
             }
@@ -212,10 +212,49 @@
             }
         </tbody>
     </table>
-<div class="add-button-center">
-        <input class="add-button" type="submit" value="Сохранить накладную" />
-</div>
+    <div class="add-button-center">
+        <button class="add-button" id="AddPriceButton" type="button">Сохранить накладную</button>
+    </div>
 </form>
+
+<script>
+    document.getElementById("AddPriceButton").addEventListener("click", function () {
+        // Отправьте список на сервер
+
+
+
+        fetch("/Invoice/AddPriceInvoice", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(invoiceListDetails)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob(); // Получаем содержимое файла в виде Blob
+                } else {
+                    // Ошибка при добавлении на сервер
+                    console.error("Ошибка при отправке списка на сервер.");
+                    throw new Error("Ошибка при отправке запроса на сервер.");
+                }
+            })
+            .then(blob => {
+                // Создаем временную ссылку для скачивания файла
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.style.display = "none";
+                a.href = url;
+                a.download = "example.docx"; // Устанавливаем имя файла
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error("Ошибка при выполнении запроса:", error);
+            });
+    });
+</script>
 
 
 
