@@ -171,9 +171,9 @@ namespace InvoiceAutomation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPriceInvoice(IEnumerable<Invoice> invoiceList)
+        public async Task<IActionResult> AddPriceInvoice(List<Invoice> invoiceList)
         {
-            if (invoiceList.Count() == 0)
+            if (invoiceList.Count == 0)
             {
                 return BadRequest();
             }
