@@ -170,7 +170,7 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> AddPriceInvoice(List<Invoice> invoiceList)
         {
             if (invoiceList.Count == 0)

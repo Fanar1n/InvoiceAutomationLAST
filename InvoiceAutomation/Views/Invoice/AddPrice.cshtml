@@ -6,6 +6,7 @@
 }
 
 <style>
+
     /* Устанавливаем стили для всей страницы */
     body {
         font-family: Arial, sans-serif; /* Шрифт для всего текста */
@@ -164,7 +165,7 @@
                         @Html.DisplayFor(modelItem => item.Quantity)
                     </td>
                     <td>
-                        @Html.EditorFor(modelItem => item.Price, new { Name = "invoiceList[" + Model.ToList().IndexOf(item) + "].Price" })
+                        <input type="text" name="Invoice_Number" placeholder="Введите цену" />
                     </td>
                 </tr>
             }
