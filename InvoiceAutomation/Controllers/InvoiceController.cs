@@ -162,12 +162,36 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> AddPrice()
+        [HttpGet]
+        public async Task<IActionResult> AddPrice(string Invoice_Number)
         {
-            var result = await _dbSet.AsNoTracking().Where(i => i.Price == null).ToListAsync();
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number == Invoice_Number).ToListAsync();
 
             return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPriceInvoice(IEnumerable<Invoice> invoiceList)
+        {
+            if (invoiceList.Count() == 0)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                foreach (var invoice in invoiceList)
+                {
+                    _dbSet.Update(invoice);
+                }
+
+                await _db.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]

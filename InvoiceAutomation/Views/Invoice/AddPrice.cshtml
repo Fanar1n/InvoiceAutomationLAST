@@ -72,8 +72,7 @@
     }
 
 </style>
-
-<form asp-action="Details">
+<form asp-controller="Invoice" asp-action="AddPriceInvoice" method="post">
     <h3>Накладная на внутреннее перемещение</h3>
     @{
         var invoice_Number = Model.FirstOrDefault();
@@ -165,7 +164,7 @@
                         @Html.DisplayFor(modelItem => item.Quantity)
                     </td>
                     <td>
-                        @Html.EditorFor(modelItem => item.Price)
+                        @Html.EditorFor(modelItem => item.Price, new { Name = "invoiceList[" + Model.ToList().IndexOf(item) + "].Price" })
                     </td>
                 </tr>
             }
@@ -212,72 +211,10 @@
             }
         </tbody>
     </table>
-</form>
 <div class="add-button-center">
-    <button class="add-button" id="SaveButtonAddPrice" style="background: #C1172C" type="button">Сохранить накладную</button>
+        <input class="add-button" type="submit" value="Сохранить накладную" />
 </div>
+</form>
 
-<script>
-
-    document.getElementById("SaveButtonAddPrice").addEventListener("click", function () {
-
-        var invoiceListAddPrice = @Html.Raw(JsonConvert.SerializeObject(Model));
-        // Отправьте список на сервер
-        fetch("/Invoice/CreateInvoice", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(invoiceListAddPrice)
-        })
-            .then(response => {
-                if (response.ok) {
-
-                    invoiceListAddPrice = [];
-                    //document.getElementById("invoiceList").value = JSON.stringify(invoiceList);
-                } else {
-                    // Ошибка при добавлении на сервер
-                    console.error("Ошибка при отправке списка на сервер.");
-                }
-            })
-            .catch(error => {
-                console.error("Ошибка при выполнении запроса:", error);
-            });
-    });
-
-    document.getElementById("downloadButtonDetails").addEventListener("click", function () {
-        // Отправьте список на сервер
-        fetch("/Invoice/DownloadInvoice", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(invoiceListDetails)
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.blob(); // Получаем содержимое файла в виде Blob
-                } else {
-                    // Ошибка при добавлении на сервер
-                    console.error("Ошибка при отправке списка на сервер.");
-                    throw new Error("Ошибка при отправке запроса на сервер.");
-                }
-            })
-            .then(blob => {
-                // Создаем временную ссылку для скачивания файла
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.style.display = "none";
-                a.href = url;
-                a.download = "example.docx"; // Устанавливаем имя файла
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => {
-                console.error("Ошибка при выполнении запроса:", error);
-            });
-    });
-</script>
 
 
