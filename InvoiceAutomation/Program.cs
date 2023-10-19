@@ -1,5 +1,7 @@
 using InvoiceAutomation.EF;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Xceed.Document.NET;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +18,19 @@ builder.Services.AddCors(options =>
                 builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                .AllowAnyHeader();
             });
 });
 
 var app = builder.Build();
+
+var roleManager = app.Services.GetRequiredService<RoleManager<IdentityRole>>();
+
+// Создайте роли, которые вам нужны
+if (!await roleManager.RoleExistsAsync("Плановый"))
+{
+    await roleManager.CreateAsync(new IdentityRole("Плановый"));
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

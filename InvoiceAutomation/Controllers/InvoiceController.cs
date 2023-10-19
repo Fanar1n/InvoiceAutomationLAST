@@ -2,7 +2,6 @@
 using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -170,22 +169,18 @@ namespace InvoiceAutomation.Controllers
             return View(result);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> AddPriceInvoice(List<Invoice> invoiceList)
+        [HttpPost]
+        public async Task<IActionResult> AddPriceInvoice([FromBody] PriceUpdateModel model)
         {
-            if (invoiceList.Count == 0)
-            {
-                return BadRequest();
-            }
             try
             {
-                foreach (var invoice in invoiceList)
-                {
-                    _dbSet.Update(invoice);
-                }
+                var result = await _dbSet.FindAsync(new object[] { model.Id });
+
+                result.Price = float.Parse(model.Price);
+
+                _dbSet.Update(result);
 
                 await _db.SaveChangesAsync();
-
                 return Ok();
             }
             catch (Exception ex)
@@ -197,7 +192,7 @@ namespace InvoiceAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string Invoice_Number)
         {
-            if(Invoice_Number is null)
+            if (Invoice_Number is null)
             {
                 var resultNULL = await _dbSet.AsNoTracking().GroupBy(x => x.Invoice_Number).Select(group => group.First()).ToListAsync();
 
@@ -238,7 +233,7 @@ namespace InvoiceAutomation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateInvoice([FromBody] List<Invoice> invoiceList)
         {
-            if(invoiceList.Count == 0)
+            if (invoiceList.Count == 0)
             {
                 return BadRequest();
             }
