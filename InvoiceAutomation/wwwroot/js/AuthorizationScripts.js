@@ -14,14 +14,14 @@ document.getElementById("AuthorizationButton").addEventListener("click", functio
         },
         body: JSON.stringify(userData)
     })
-        .then(response => {
-            if (response.notfound) {
-                console.error("Пользователь не был найден.");
-            }
-            if (response.ok) {
-                window.location.href = '/Invoice/Create';
-            }
-        })
+        //.then(response => {
+        //    if (response.notfound) {
+        //        console.error("Пользователь не был найден.");
+        //    }
+        //    if (response.ok) {
+        //        window.location.href = '/Invoice/Create';
+        //    }
+        //})
         .catch(error => {
             console.error("Ошибка при выполнении запроса:", error);
         });

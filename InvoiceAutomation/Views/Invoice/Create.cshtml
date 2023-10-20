@@ -6,94 +6,94 @@
 
 <div class="tab-content">
     <form asp-action="Create">
-    <div class="header">Накладная на внутреннее перемещение</div>
-    <div style="height: 20px;"></div>
-    <div class="invoiceNumber">
-        <label for="waybillNumber">Номер накладной:</label>
+        <div class="header">Накладная на внутреннее перемещение</div>
+        <div style="height: 20px;"></div>
+        <div class="invoiceNumber">
+            <label for="waybillNumber">Номер накладной:</label>
             <input asp-for="Invoice_Number" class="form-control" id="Invoice_Number" />
-        <span asp-validation-for="Invoice_Number" class="text-danger"></span>
-    </div>
-    <div style="height: 20px;"></div>
-    <div class="container">
-        <div class="column">
-            <div class="row">
-                <label for="docNumber">Номер документа:</label>
-                    <input asp-for="Document_Number" class="form-control" id="Document_Number" />
-                <span asp-validation-for="Document_Number" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="date">Дата:</label>
-                    <input asp-for="Data_Of_Creation" class="form-control" id="Data_Of_Creation" type="date" />
-                <span asp-validation-for="Data_Of_Creation" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="senderCode">Шифр отправителя:</label>
-                    <input asp-for="Sender_Code" class="form-control" id="Sender_Code" />
-                <span asp-validation-for="Sender_Code" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="receiverCode">Шифр получателя:</label>
-                    <input asp-for="Recipient_Code" class="form-control" id="Recipient_Code" />
-                <span asp-validation-for="Recipient_Code" class="text-danger"></span>
-            </div>
+            <span asp-validation-for="Invoice_Number" class="text-danger"></span>
         </div>
+        <div style="height: 20px;"></div>
+        <div class="container">
+            <div class="column">
+                <div class="row">
+                    <label for="docNumber">Номер документа:</label>
+                    <input asp-for="Document_Number" class="form-control" id="Document_Number" />
+                    <span asp-validation-for="Document_Number" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label for="date">Дата:</label>
+                    <input asp-for="Data_Of_Creation" class="form-control" id="Data_Of_Creation" type="date" />
+                    <span asp-validation-for="Data_Of_Creation" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label for="senderCode">Шифр отправителя:</label>
+                    <input asp-for="Sender_Code" class="form-control" id="Sender_Code" />
+                    <span asp-validation-for="Sender_Code" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label for="receiverCode">Шифр получателя:</label>
+                    <input asp-for="Recipient_Code" class="form-control" id="Recipient_Code" />
+                    <span asp-validation-for="Recipient_Code" class="text-danger"></span>
+                </div>
+            </div>
 
-        <div class="column">
-            <div class="row">
-                <label for="expenseCode">Шифр затрат:</label>
+            <div class="column">
+                <div class="row">
+                    <label for="expenseCode">Шифр затрат:</label>
                     <input asp-for="Cost_Code" class="form-control" id="Cost_Code" />
                     <span asp-validation-for="Cost_Code" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="name">Наименование:</label>
+                </div>
+                <div class="row">
+                    <label for="name">Наименование:</label>
                     <input asp-for="Name" class="form-control" id="Name" />
                     <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="itemNumber">Номенклатурный номер:</label>
+                </div>
+                <div class="row">
+                    <label for="itemNumber">Номенклатурный номер:</label>
                     <input asp-for="Item_Number" class="form-control" id="Item_Number" />
                     <span asp-validation-for="Item_Number" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="unit">Единица измерения:</label>
+                </div>
+                <div class="row">
+                    <label for="unit">Единица измерения:</label>
                     <input asp-for="Unit" class="form-control" id="Unit" />
                     <span asp-validation-for="Unit" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="quantity">Количество:</label>
+                </div>
+                <div class="row">
+                    <label for="quantity">Количество:</label>
                     <input asp-for="Quantity" class="form-control" id="Quantity" />
                     <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="price">Цена:</label>
+                </div>
+                <div class="row">
+                    <label for="price">Цена:</label>
                     <input asp-for="Price" class="form-control" id="Price" />
                     <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="column">
-            <div class="row">
-                <label for="approved">Разрешил:</label>
+            <div class="column">
+                <div class="row">
+                    <label for="approved">Разрешил:</label>
                     <input asp-for="Allowed" class="form-control" id="Allowed" />
-                <span asp-validation-for="Allowed" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="controller">Контролёр:</label>
+                    <span asp-validation-for="Allowed" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label for="controller">Контролёр:</label>
                     <input asp-for="Controller" class="form-control" id="Controller" />
-                <span asp-validation-for="Controller" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <label for="delivered">Сдал:</label>
+                    <span asp-validation-for="Controller" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <label for="delivered">Сдал:</label>
                     <input asp-for="Passed" class="form-control" id="Passed" />
-                <span asp-validation-for="Passed" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="Passed" class="text-danger"></span>
+                </div>
                 <div class="row">
                     <label for="approved">Разрешил:</label>
                     <input asp-for="Accepted" class="form-control" id="Accepted" />
                     <span asp-validation-for="Accepted" class="text-danger"></span>
                 </div>
+            </div>
         </div>
-    </div>
 
         <input type="hidden" id="invoiceList" name="invoiceList" />
 
@@ -126,25 +126,25 @@
             </table>
         </div>
 
-    <div class="column">
-        <table id="productList" class="data-grid">
-            <thead>
-                <tr>
-                    <th>Порядковый номер</th>
-                    <th>Шифр затрат</th>
-                    <th>Наименование</th>
-                    <th>Номенклатурный номер</th>
-                    <th>Единица измерение</th>
-                    <th>Количество</th>
-                    <th>Цена</th>
-                    <th>Сумма</th>
-                    <th>Удалить</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- ���� ����� ����������� ������ � ������� ������� -->
-            </tbody>
-        </table>
+        <div class="column">
+            <table id="productList" class="data-grid">
+                <thead>
+                    <tr>
+                        <th>Порядковый номер</th>
+                        <th>Шифр затрат</th>
+                        <th>Наименование</th>
+                        <th>Номенклатурный номер</th>
+                        <th>Единица измерение</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th>Сумма</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ���� ����� ����������� ������ � ������� ������� -->
+                </tbody>
+            </table>
         </div>
 
         <div class="column">
@@ -180,4 +180,3 @@
 
     </form>
 </div>
-

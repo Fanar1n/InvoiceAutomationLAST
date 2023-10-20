@@ -102,7 +102,7 @@ namespace InvoiceAutomation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AuthorizationUser([FromBody] User user)
+        public async Task<IActionResult> AuthorizationUser(User user)
         {
             User userFromDB = null;
             try
