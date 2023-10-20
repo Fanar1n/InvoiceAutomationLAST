@@ -1,23 +1,23 @@
-﻿@model IEnumerable<InvoiceAutomation.Models.Invoice>
+﻿@{
+    Layout = "_PlanovieLayout";
+}
+
+@model IEnumerable<InvoiceAutomation.Models.Invoice>
 
 @{
     ViewData["Title"] = "GetAllAsync";
 }
 
 <style>
-    /* Устанавливаем стили для всей страницы */
     body {
         font-family: Arial, sans-serif; /* Шрифт для всего текста */
         margin: 0; /* Убираем отступы на странице */
         padding: 0; /* Убираем внутренние отступы на странице */
-        background-color: #f4f4f4; /* Цвет фона страницы */
     }
 
     /* Устанавливаем стили для заголовка h1 */
-    h1 {
-        color: #333; /* Цвет заголовка */
+    h2 {
         text-align: center; /* Выравниваем заголовок по центру */
-        padding: 20px 0; /* Добавляем отступы сверху и снизу для заголовка */
     }
 
     /* Устанавливаем стили для таблицы */
@@ -31,11 +31,11 @@
 
     /* Устанавливаем стили для заголовков таблицы (th) */
     th {
-        background-color: #007bff;
-        color: #fff;
+        background-color: #f0f0f0;
         padding: 10px;
         text-align: left;
         white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
     }
 
     /* Устанавливаем стили для ячеек таблицы (td) */
@@ -98,65 +98,82 @@
         transition: background-color 0.3s;
     }
 
+    #search-form {
+        border-radius: 5px;
+        text-align: center;
+    }
+
+        #search-form label {
+            display: inline-block; /* Добавлено для размещения в одной строке */
+            margin-bottom: 10px;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="text"] {
+            width: 800px; /* Увеличение ширины поля ввода */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="submit"] {
+            background-color: #0074d9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+            #search-form input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
 </style>
 
-<form asp-action="ShowList">
+<h2>Работа с накладными</h2>
 
-    <h1>GetAllAsync</h1>
-
-    <div class="invoiceNumber">
-        <label for="docNumber">Номер документа:</label>
-        <input class="form-control" id="invoiceNumber" />
-        <button class="add-button" id="searchButton">Добавить изделие</button>
+<form id="search-form" asp-controller="Planovie" asp-action="Search" method="get">
+    <div>
+        <label>Номер документа:</label>
+        <input type="text" name="Invoice_Number" placeholder="Введите строку" />
+        <input type="submit" value="Поиск накладной" />
     </div>
+</form>
 
-    <table class="table">
+<form asp-action="List">
+    <table class="data-grid">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Invoice_Number)
+                    <label>Номер докладной</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Document_Number)
+                    <label>№ документа</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Data_Of_Creation)
+                    <label>Дата</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sender_Code)
+                    <label>Шифр отправителя</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Recipient_Code)
+                    <label>Шифр получателя</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cost_Code)
+                    <label>Разрешил</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    <label>Контролёр</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Item_Number)
+                    <label>Сдал</label>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Unit)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Allowed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controller)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Passed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Accepted)
+                    <label>Принял</label>
                 </th>
                 <th></th>
             </tr>
@@ -181,24 +198,6 @@
                         @Html.DisplayFor(modelItem => item.Recipient_Code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Cost_Code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Item_Number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Unit)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Allowed)
                     </td>
                     <td>
@@ -211,9 +210,8 @@
                         @Html.DisplayFor(modelItem => item.Accepted)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-controller="Planovie" asp-action="Details" asp-route-invoice_Number="@item.Invoice_Number">Детали</a>
+                        <a asp-controller="Planovie" asp-action="AddPrice" asp-route-invoice_Number="@item.Invoice_Number">Добавить цену</a>
                     </td>
                 </tr>
             }

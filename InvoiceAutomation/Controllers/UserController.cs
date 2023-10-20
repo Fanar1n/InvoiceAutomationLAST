@@ -117,13 +117,16 @@ namespace InvoiceAutomation.Controllers
                     }
                     if (userFromDB.Role == "СМЦ" || userFromDB.Role == "ПДО")
                     {
-                        return RedirectToAction("Create", "Invoice");
+                        return RedirectToAction("List", "Invoice");
                     }
                     if (userFromDB.Role == "Плановый")
                     {
-                        return RedirectToAction("AddPrice", "Invoice");
+                        return RedirectToAction("List", "Planovie");
                     }
-                    return RedirectToAction("Create", "Invoice");
+                    else
+                    {
+                        return NotFound("Пользователь не найден");
+                    }
                 }
                 else
                 {

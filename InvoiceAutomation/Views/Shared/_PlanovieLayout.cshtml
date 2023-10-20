@@ -8,22 +8,22 @@
 
 </head>
 <body>
-        <nav class="navbar-nav">
+    <nav class="navbar-nav">
         <ul>
             <li>
-                <a class="" asp-area="" asp-controller="Invoice" asp-action="Create">Создание накладной</a>
+                <a class="" asp-area="" asp-controller="Planovie" asp-action="List">Поиск,Печать,Добавление цены</a>
             </li>
             <li>
-                <a class="" asp-area="" asp-controller="Invoice" asp-action="List">Справочник</a>
+                <a class="" asp-area="" asp-controller="Directory" asp-action="Create">Справочник</a>
             </li>
         </ul>
-        </nav>
-            @RenderBody()
-@*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    </nav>
+    @RenderBody()
+    @*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>*@
     <script src="~/js/InvoiceScripts.js" asp-append-version="true"></script>
-@*    <script src="~/js/InvoicePrinting.js" asp-append-version="true"></script>*@
+    @*    <script src="~/js/InvoicePrinting.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

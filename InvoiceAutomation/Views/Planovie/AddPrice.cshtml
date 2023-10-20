@@ -1,0 +1,264 @@
+﻿@{
+    Layout = "_PlanovieLayout";
+}
+
+@using Newtonsoft.Json;
+@model IEnumerable<InvoiceAutomation.Models.Invoice>
+
+@{
+    ViewData["Title"] = "GetAllAsync";
+}
+
+<style>
+
+    /* Устанавливаем стили для всей страницы */
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего текста */
+        margin: 0; /* Убираем отступы на странице */
+        padding: 0; /* Убираем внутренние отступы на странице */
+    }
+
+    /* Устанавливаем стили для заголовка h1 */
+    h2 {
+        text-align: center; /* Выравниваем заголовок по центру */
+    }
+
+    /* Устанавливаем стили для таблицы */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        table-layout: fixed; /* Фиксируем ширину столбцов */
+    }
+
+    /* Устанавливаем стили для заголовков таблицы (th) */
+    th {
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
+    }
+
+    /* Устанавливаем стили для ячеек таблицы (td) */
+    td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в ячейках */
+        overflow: hidden; /* Скрываем содержимое, которое не помещается */
+        text-overflow: ellipsis; /* Добавляем многоточие для обрезанного текста */
+    }
+
+    /* Устанавливаем стили для строк таблицы (tr) */
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет фона четных строк */
+    }
+
+    /* Устанавливаем стили для строк таблицы при наведении курсора */
+    tr:hover {
+        background-color: #ddd; /* Цвет фона строки при наведении курсора */
+    }
+
+    /* Устанавливаем стили для ссылок в ячейках таблицы */
+    a {
+        text-decoration: none; /* Убираем подчеркивание для ссылок */
+        color: #007bff; /* Цвет ссылок */
+    }
+
+        /* Устанавливаем стили для ссылок в ячейках таблицы при наведении курсора */
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+        }
+
+    h3 {
+        text-align: center;
+        font-weight: normal;
+    }
+
+</style>
+<h3>Накладная на внутреннее перемещение</h3>
+@{
+    var invoice_Number = Model.FirstOrDefault();
+    <h3>@Html.DisplayFor(modelItem => invoice_Number.Invoice_Number)</h3>
+}
+
+<table class="data-grid">
+    <thead>
+        <tr>
+            <th>
+                <label>Номер документа</label>
+            </th>
+            <th>
+                <label>Дата</label>
+            </th>
+            <th>
+                <label>Шифр отправителя</label>
+            </th>
+            <th>
+                <label>Шифр получателя</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var firstItem = Model.FirstOrDefault();
+            if (firstItem != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => firstItem.Document_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => firstItem.Data_Of_Creation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => firstItem.Sender_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => firstItem.Recipient_Code)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
+<table class="data-grid">
+    <thead>
+        <tr>
+            <th>
+                <label>Шифр затрат</label>
+            </th>
+            <th>
+                <label>Наименование</label>
+            </th>
+            <th>
+                <label>Номенклатурный номер</label>
+            </th>
+            <th>
+                <label>Ед. изм</label>
+            </th>
+            <th>
+                <label>Количество</label>
+            </th>
+            <th>
+                <label>Цена</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <input type="text" name="Price[@Model.ToList().IndexOf(item)]" placeholder="Введите цену" />
+                </td>
+                <td>
+                    <button class="save-button" data-row-index="@Model.ToList().IndexOf(item)" data-item-id="@item.Id">Сохранить</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="data-grid">
+    <thead>
+        <tr>
+            <th>
+                <label>Разрешил</label>
+            </th>
+            <th>
+                <label>Контроллёр</label>
+            </th>
+            <th>
+                <label>Сдал</label>
+            </th>
+            <th>
+                <label>Принял</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var secondItem = Model.FirstOrDefault();
+            if (secondItem != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => secondItem.Allowed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => secondItem.Controller)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => secondItem.Passed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => secondItem.Accepted)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    document.querySelectorAll(".save-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+            var rowIndex = this.getAttribute("data-row-index"); // Получаем индекс строки
+            var itemId = this.getAttribute("data-item-id"); // Получаем item.Id
+
+            // Выводим индексы для отладки
+            console.log("Row Index:", rowIndex);
+            console.log("Item Id:", itemId);
+
+            // Получаем значение input для данной строки
+            var input = this.closest("tr").querySelector('input[name^="Price"]');
+            var inputValue = input ? input.value : null;
+
+            // Выводим значение для отладки
+            console.log("Input Value:", inputValue);
+
+            // Если значение input было найдено, отправляем данные на сервер через fetch
+            if (inputValue !== null) {
+                fetch("/Planovie/AddPriceInvoice", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id: itemId, price: inputValue })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Обработка успешного ответа от сервера, если необходимо
+                        } else {
+                            // Обработка ошибки
+                        }
+                    })
+                    .catch(error => {
+                        // Обработка ошибки
+                    });
+            }
+        });
+    });
+</script>
+
+
+
