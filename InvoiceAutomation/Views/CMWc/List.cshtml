@@ -1,0 +1,216 @@
+﻿@model IEnumerable<InvoiceAutomation.Models.Invoice>
+
+@{
+    ViewData["Title"] = "GetAllAsync";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего текста */
+        margin: 0; /* Убираем отступы на странице */
+        padding: 0; /* Убираем внутренние отступы на странице */
+    }
+
+    /* Устанавливаем стили для заголовка h1 */
+    h2 {
+        text-align: center; /* Выравниваем заголовок по центру */
+    }
+
+    /* Устанавливаем стили для таблицы */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        table-layout: fixed; /* Фиксируем ширину столбцов */
+    }
+
+    /* Устанавливаем стили для заголовков таблицы (th) */
+    th {
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в заголовках */
+        font-weight: bold;
+    }
+
+    /* Устанавливаем стили для ячеек таблицы (td) */
+    td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap; /* Запрещаем перенос текста в ячейках */
+        overflow: hidden; /* Скрываем содержимое, которое не помещается */
+        text-overflow: ellipsis; /* Добавляем многоточие для обрезанного текста */
+    }
+
+    /* Устанавливаем стили для строк таблицы (tr) */
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет фона четных строк */
+    }
+
+    /* Устанавливаем стили для строк таблицы при наведении курсора */
+    tr:hover {
+        background-color: #ddd; /* Цвет фона строки при наведении курсора */
+    }
+
+    /* Устанавливаем стили для ссылок в ячейках таблицы */
+    a {
+        text-decoration: none; /* Убираем подчеркивание для ссылок */
+        color: #007bff; /* Цвет ссылок */
+    }
+
+        /* Устанавливаем стили для ссылок в ячейках таблицы при наведении курсора */
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылки при наведении курсора */
+        }
+
+    .invoiceNumber {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .invoiceNumber label {
+            min-width: 160px;
+            font-weight: bold;
+        }
+
+        .invoiceNumber input {
+            width: 60%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+    .add-button {
+        background-color: #0074d9;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #search-form {
+        border-radius: 5px;
+        text-align: center;
+    }
+
+        #search-form label {
+            display: inline-block; /* Добавлено для размещения в одной строке */
+            margin-bottom: 10px;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="text"] {
+            width: 800px; /* Увеличение ширины поля ввода */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px; /* Увеличение размера шрифта */
+        }
+
+        #search-form input[type="submit"] {
+            background-color: #0074d9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 18px; /* Увеличение размера шрифта */
+        }
+
+            #search-form input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+</style>
+
+<h2>Работа с накладными</h2>
+
+<form id="search-form" asp-controller="Invoice" asp-action="Search" method="get">
+    <div>
+        <label>Номер документа:</label>
+        <input type="text" name="Invoice_Number" placeholder="Введите строку" />
+        <input type="submit" value="Поиск накладной" />
+    </div>
+</form>
+
+<form asp-action="List">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <th>
+                    <label>Номер докладной</label>
+                </th>
+                <th>
+                    <label>№ документа</label>
+                </th>
+                <th>
+                    <label>Дата</label>
+                </th>
+                <th>
+                    <label>Шифр отправителя</label>
+                </th>
+                <th>
+                    <label>Шифр получателя</label>
+                </th>
+                <th>
+                    <label>Разрешил</label>
+                </th>
+                <th>
+                    <label>Контролёр</label>
+                </th>
+                <th>
+                    <label>Сдал</label>
+                </th>
+                <th>
+                    <label>Принял</label>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Invoice_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Document_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data_Of_Creation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sender_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Recipient_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Allowed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Controller)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Passed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Accepted)
+                    </td>
+                    <td>
+                        <a asp-controller="Invoice" asp-action="Details" asp-route-invoice_Number="@item.Invoice_Number">Детали</a>
+                        <a asp-controller="Invoice" asp-action="Delete" asp-route-invoice_Number="@item.Invoice_Number">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

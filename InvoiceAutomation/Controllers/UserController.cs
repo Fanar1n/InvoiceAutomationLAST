@@ -107,7 +107,7 @@ namespace InvoiceAutomation.Controllers
             User userFromDB = null;
             try
             {
-                userFromDB = _db.User.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+                userFromDB = await _db.User.FirstOrDefaultAsync(u => u.Username == user.Username && u.Password == user.Password);
 
                 if (userFromDB != null)
                 {

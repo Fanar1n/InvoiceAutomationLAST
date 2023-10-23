@@ -15,16 +15,14 @@
 
     <div class="login-container">
         <h1>Вход</h1>
-        <form asp-action="Authorization">
+        <form asp-action="AuthorizationUser">
             <label for="expenseCode">Логин:</label>
             <input asp-for="Username" class="form-control" id="Username" />
             <span asp-validation-for="Username" class="text-danger"></span>
             <label for="expenseCode">Пароль:</label>
             <input asp-for="Password" class="form-control" id="Password" />
             <span asp-validation-for="Password" class="text-danger"></span>
-            <div class="add-button-center">
-                <button class="add-button" id="AuthorizationButton" type="button">Вход</button>
-            </div>
+            <input type="submit" value="Вход" />
         </form>
     </div>
     <script src="~/js/AuthorizationScripts.js" asp-append-version="true"></script>

@@ -4,7 +4,8 @@ document.getElementById("AuthorizationButton").addEventListener("click", functio
     var userData = {
         Id: null,
         Username: document.getElementById("Username").value,
-        Password: document.getElementById("Password").value
+        Password: document.getElementById("Password").value,
+        Role: null
     }
     // Отправьте список на сервер
     fetch("/User/AuthorizationUser", {

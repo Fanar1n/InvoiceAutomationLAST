@@ -202,7 +202,7 @@ namespace InvoiceAutomation.Controllers
             {
                 var result = await _dbSet
         .AsNoTracking()
-        .Where(i => i.Invoice_Number.Contains(Invoice_Number) || i.Name.Contains(Invoice_Number) || i.Item_Number.Contains(Invoice_Number)) // Фильтрация по Invoice_Number и/или Name
+        .Where(i => i.Invoice_Number.Contains(Invoice_Number) || i.Name.Contains(Invoice_Number) || i.Item_Number.Contains(Invoice_Number) || i.Data_Of_Creation.ToString().Contains(Invoice_Number)) // Фильтрация по Invoice_Number и/или Name
         .GroupBy(x => x.Invoice_Number)
         .Select(group => group.First())
         .ToListAsync();

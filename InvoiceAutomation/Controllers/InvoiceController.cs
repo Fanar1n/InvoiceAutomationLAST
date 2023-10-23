@@ -2,6 +2,7 @@
 using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -253,5 +254,18 @@ namespace InvoiceAutomation.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> List(string sortBy)
+        //{
+        //    var result = await _dbSet.AsNoTracking().GroupBy(x => x.Invoice_Number).Select(group => group.First()).ToListAsync();
+
+        //    if (sortBy == "Date")
+        //    {
+        //        result = (List<Invoice>)result.OrderBy(i => i.Data_Of_Creation); // Сортировка по дате
+        //    }
+
+        //    return View("List", result);
+        //}
     }
 }

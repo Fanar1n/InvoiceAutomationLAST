@@ -36,17 +36,21 @@ input {
         font-size: 16px; /* Çàäàéòå æåëàåìûé ðàçìåð øðèôòà */
     }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 18px;
-}
-
-    button:hover {
-        background-color: #0056b3;
+    input[type="submit"] {
+        background-color: #0074d9;
+        color: white;
+        border: none;
+        padding: 13px 26px;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: auto; /* Убираем явное указание ширины */
+        height: auto; /* Убираем явное указание высоты */
+        line-height: normal; /* Убираем явное указание высоты строки */
+        text-align: center;
     }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
