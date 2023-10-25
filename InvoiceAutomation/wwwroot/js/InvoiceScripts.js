@@ -125,7 +125,7 @@ document.getElementById("addProductButton").addEventListener("click", function (
 
 document.getElementById("submitListButton").addEventListener("click", function () {
     // Отправьте список на сервер
-    fetch("/Invoice/CreateInvoice", {
+    fetch("/CMWer/CreateInvoice", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

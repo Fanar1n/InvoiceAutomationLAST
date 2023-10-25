@@ -1,4 +1,8 @@
-﻿@model IEnumerable<InvoiceAutomation.Models.Invoice>
+﻿@{
+    Layout = "_CMWLayout";
+}
+
+@model IEnumerable<InvoiceAutomation.Models.Invoice>
 
 @{
     ViewData["Title"] = "GetAllAsync";
@@ -132,7 +136,7 @@
 
 <h2>Работа с накладными</h2>
 
-<form id="search-form" asp-controller="Invoice" asp-action="Search" method="get">
+<form id="search-form" asp-controller="CMWer" asp-action="Search" method="get">
     <div>
         <label>Номер документа:</label>
         <input type="text" name="Invoice_Number" placeholder="Введите строку" />
@@ -206,8 +210,8 @@
                         @Html.DisplayFor(modelItem => item.Accepted)
                     </td>
                     <td>
-                        <a asp-controller="Invoice" asp-action="Details" asp-route-invoice_Number="@item.Invoice_Number">Детали</a>
-                        <a asp-controller="Invoice" asp-action="Delete" asp-route-invoice_Number="@item.Invoice_Number">Удалить</a>
+                        <a asp-controller="CMWer" asp-action="Details" asp-route-invoice_Number="@item.Invoice_Number">Детали</a>
+                        <a asp-controller="CMWer" asp-action="Delete" asp-route-invoice_Number="@item.Invoice_Number">Удалить</a>
                     </td>
                 </tr>
             }

@@ -13,28 +13,28 @@ namespace InvoiceAutomation.Models
         [JsonProperty("Data_Of_Creation")]
         public DateTime Data_Of_Creation { get; set; }
         [JsonProperty("Sender_Code")]
-        public string Sender_Code { get; set; }
+        public string? Sender_Code { get; set; }
         [JsonProperty("Recipient_Code")]
-        public string Recipient_Code { get; set; }
+        public string? Recipient_Code { get; set; }
         [JsonProperty("Cost_Code")]
-        public string Cost_Code { get; set; }
+        public string? Cost_Code { get; set; }
         [JsonProperty("Name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [JsonProperty("Item_Number")]
-        public string Item_Number { get; set; }
+        public string? Item_Number { get; set; }
         [JsonProperty("Unit")]
-        public string Unit { get; set; }
+        public string? Unit { get; set; }
         [JsonProperty("Quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
         [JsonProperty("Price")]
         public float? Price { get; set; }
         [JsonProperty("Allowed")]
-        public string Allowed { get; set; }
+        public string? Allowed { get; set; }
         [JsonProperty("Controller")]
-        public string Controller { get; set; }
+        public string? Controller { get; set; }
         [JsonProperty("Passed")]
-        public string Passed { get; set; }
+        public string? Passed { get; set; }
         [JsonProperty("Accepted")]
-        public string Accepted { get; set; }
+        public string? Accepted { get; set; }
     }
 }

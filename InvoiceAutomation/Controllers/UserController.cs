@@ -117,7 +117,7 @@ namespace InvoiceAutomation.Controllers
                     }
                     if (userFromDB.Role == "СМЦ" || userFromDB.Role == "ПДО")
                     {
-                        return RedirectToAction("List", "Invoice");
+                        return RedirectToAction("Create", "CMWer");
                     }
                     if (userFromDB.Role == "Плановый")
                     {

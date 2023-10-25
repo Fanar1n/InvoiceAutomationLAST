@@ -2,12 +2,14 @@
 using InvoiceAutomation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
+using System.Text.Json;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
 namespace InvoiceAutomation.Controllers
 {
-    public class PlanovieController : Controller
+    public class CMWerController : Controller
     {
         private readonly ApplicationDbContext _db;
 
@@ -15,7 +17,7 @@ namespace InvoiceAutomation.Controllers
 
         public List<Invoice> ListOfProducts = new List<Invoice>();
 
-        public PlanovieController(ApplicationDbContext applicationDbContext)
+        public CMWerController(ApplicationDbContext applicationDbContext)
         {
             _db = applicationDbContext;
             _dbSet = _db.Set<Invoice>();
@@ -206,9 +208,72 @@ namespace InvoiceAutomation.Controllers
         .GroupBy(x => x.Invoice_Number)
         .Select(group => group.First())
         .ToListAsync();
-
                 return View("List", result);
             }
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string Invoice_Number)
+        {
+            var result = await _dbSet.AsNoTracking().Where(i => i.Invoice_Number == Invoice_Number).ToListAsync();
+
+            _dbSet.RemoveRange(result);
+
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateInvoice([FromBody] List<Invoice> invoiceList)
+        {
+            if (invoiceList.Count == 0)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                foreach (var invoice in invoiceList)
+                {
+                    await _dbSet.AddAsync(invoice);
+                }
+
+                await _db.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DateAsc(string invoicesJson)
+        {
+            var invoices = JsonSerializer.Deserialize<IEnumerable<Invoice>>(invoicesJson);
+
+            var result = invoices.OrderBy(i => i.Data_Of_Creation);
+
+            return View("List", result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DateDesc(string invoicesJson)
+        {
+            var invoices = JsonSerializer.Deserialize<IEnumerable<Invoice>>(invoicesJson);
+
+            var result = invoices.OrderByDescending(i => i.Data_Of_Creation);
+
+            return View("List", result);
         }
     }
 }
